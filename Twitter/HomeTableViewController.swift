@@ -14,14 +14,16 @@ class HomeTableViewController: UITableViewController {
     var numberOfTweet: Int!
     
     let myRefreshControl = UIRefreshControl()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         loadTweets()
-        
         myRefreshControl.addTarget(self, action: #selector(loadTweets) , for: .valueChanged)
         tableView.refreshControl = myRefreshControl
         
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loadTweets()
     }
 
     @objc func loadTweets(){
